@@ -146,7 +146,6 @@ Status ListDelete(SqList& l, int i, ElemType& e) {
 	}
 	l.length -= 1;
 	return OK;
-	
 }
 
 //依次输出所有元素

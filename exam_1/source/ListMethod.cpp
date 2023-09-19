@@ -12,7 +12,9 @@ Status InitList(SqList& l,int maxsize,int incresize) {
 
 //销毁顺序表
 Status DestroyList(SqList &l) {
-    delete []l.elem;
+    if (l.elem != nullptr) {
+        delete[] l.elem;
+    }
     l.length = 0;
     l.incrementsize = 0;
     l.listsize = 0;
@@ -93,7 +95,7 @@ Status NextElem(SqList l, ElemType cur_e, ElemType& next_e) {
     ElemType * p_next = l.elem +1;
     int i = 1;
     while(1){
-        if (i == l.length){
+        if (i >= l.length){
             break;
         }
         if (*p_cur == cur_e){
@@ -107,11 +109,13 @@ Status NextElem(SqList l, ElemType cur_e, ElemType& next_e) {
 
 //扩充顺序表
 void increment(SqList& l) {
-    ElemType * tmp = new ElemType[l.listsize+l.incrementsize];
+    ElemType * tmp = new ElemType[l.listsize + l.incrementsize];
+    
     for (int i = 0; i < l.length; i++)
     {
         tmp[i] = l.elem[i];
     }
+
     delete[] l.elem;
     l.listsize += l.incrementsize;
     l.elem = tmp;
@@ -119,7 +123,7 @@ void increment(SqList& l) {
 
 //插入元素
 Status InsertElem(SqList &l, int i, ElemType e){
-    if (l.length == l.listsize){
+    if (l.length >= l.listsize){
         return ERROR;
     }
     
@@ -132,9 +136,9 @@ Status InsertElem(SqList &l, int i, ElemType e){
         return OK;
     }
 
-    for (int j = l.length; j >= i; j--)
+    for (int j = l.length - 1; j >= i - 1; j--)
     {
-        l.elem[j]=l.elem[j-1];
+        l.elem[j+1]=l.elem[j];
     }
 
     l.elem[i-1]= e;
@@ -148,10 +152,13 @@ Status ListDelete(SqList& l, int i, ElemType& e) {
     if (i < 1 || i > l.length){
         return ERROR;
     }
+    e = l.elem[i-1];
+
 	for (int j = i + 1 ; j <= l.length; j++)
     {
         l.elem[j-2] = l.elem[j-1];
     }
+
     l.length--;
     return OK;
 }
