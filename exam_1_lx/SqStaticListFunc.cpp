@@ -109,6 +109,7 @@ void increment(SqList& l) {
 	l.listsize += l.incrementsize;
 
 }
+
 Status InsertElem(SqList &l, int i, ElemType e){
 	ElemType* p;
 	ElemType* q;

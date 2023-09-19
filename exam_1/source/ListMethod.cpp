@@ -105,11 +105,19 @@ Status NextElem(SqList l, ElemType cur_e, ElemType& next_e) {
     return ERROR;
 }
 
-//插入元素
+//扩充顺序表
 void increment(SqList& l) {
-
-
+    ElemType * tmp = new ElemType[l.listsize+l.incrementsize];
+    for (int i = 0; i < l.length; i++)
+    {
+        tmp[i] = l.elem[i];
+    }
+    delete[] l.elem;
+    l.listsize += l.incrementsize;
+    l.elem = tmp;
 }
+
+//插入元素
 Status InsertElem(SqList &l, int i, ElemType e){
     if (l.length == l.listsize){
         return ERROR;
