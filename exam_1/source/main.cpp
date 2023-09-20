@@ -16,9 +16,9 @@ int main()
    }
 
   // //4.判断La是否为空
-   if (ClearList(La)) {
-	   printf("链表为空\n");
-   }
+  //  if (ClearList(La)) {
+	//    printf("链表为空\n");
+  //  }
 
   // //5.输出线性表的长度 
    printf("线性表长度为%d\n", ListLength(La));
@@ -31,7 +31,8 @@ int main()
   if (GetElem(La, i, e)) {
 	  printf("L中第%d个元素的值%d\n", i,e);
   }
-  
+  cout<<"e:";
+  cin>>e;
   // //7.返回e的位置 
   int location = LocateElem(La, e);
   printf("e的位置是%d\n", location);

@@ -133,6 +133,7 @@ Status InsertElem(SqList &l, int i, ElemType e){
     
     if (i == l.length + 1){
         l.elem[i-1] = e;
+        l.length++;
         return OK;
     }
 
