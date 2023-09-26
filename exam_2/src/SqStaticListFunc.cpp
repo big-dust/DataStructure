@@ -104,7 +104,7 @@ Status PriorElem(LinkList l, int cur_e, ElemType &pre_e) {
 
 //后继
 Status NextElem( LinkList l, int cur_e, ElemType &next_e) {
-	if (cur_e < 1 || cur_e > ListLength(l)+1){
+	if (cur_e < 1 || cur_e > ListLength(l)-1){
 		return ERROR;
 	}
 
@@ -151,7 +151,7 @@ Status ListInsert_back(LinkList& l, Node* p, Node* s) {
 	return OK;
 }
 
-//删链表
+//删链点
 Status ListDelete(LinkList &l, Node *p, ElemType &e) {
 	Node * q = l;
 	while(q->next != NULL && q->next != p){
@@ -161,7 +161,8 @@ Status ListDelete(LinkList &l, Node *p, ElemType &e) {
 		cout<<"ListInsertDelete: 没有指定的的节点"<<endl;
 		return ERROR;
 	}
-	Node * tmp = q->next;
+	Node * tmp = q->next;	
+	e = tmp->data;
 	q->next = tmp->next;
 	delete tmp;
 	return OK;
