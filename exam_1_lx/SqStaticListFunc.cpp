@@ -1,4 +1,4 @@
-#include "head.h"
+#include "..\exam3_wjx\include\head.h"
 using namespace std;
 
 void ErrorMessage(const char *s)//出错信息处理函数 
