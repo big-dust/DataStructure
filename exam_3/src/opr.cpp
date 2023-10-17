@@ -3,7 +3,6 @@
 using namespace std;
 
 //取集合A和集合B交集
-
 LinkList overlap(LinkList a,LinkList b){
     Node * result = InitList();
     Node * p = a->next;
@@ -35,8 +34,7 @@ LinkList Union(LinkList a,LinkList b){
 }
 
 //差集
-LinkList SetDifference(LinkList a, LinkList b){\
-    Node * result = InitList();
+LinkList SetDifference(LinkList a, LinkList b){
     Node * p = a->next;
     while(p){
         if (LocateElem(b,p->data)==0){
