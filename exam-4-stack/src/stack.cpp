@@ -10,16 +10,27 @@ public:
 
     // 入栈操作
     void Push(int data) {
-        Node* newNode = new Node(data);
-        newNode->next = top;
-        top = newNode;
+        Node * temp = new Node(data);
+        temp->next = top;
+        top = temp;
         size++;
     }
 
-    // 出栈操作
+    // 出栈操作,不存e
     void Pop() {
         if (!IsEmpty()) {
             Node* temp = top;
+            top = top->next;
+            delete temp;
+            size--;
+        }
+    }
+
+    // 出栈操作，保存e 
+    void Pop(int * e) {
+        if (!IsEmpty()) {
+            Node* temp = top;
+            *e = top->data;
             top = top->next;
             delete temp;
             size--;
@@ -31,7 +42,7 @@ public:
         if (!IsEmpty()) {
             return top->data;
         }
-        return -1; // 表示栈为空
+        return -1; //表示栈为空
     }
 
     // 判断栈是否为空
@@ -53,13 +64,13 @@ public:
 
     // 打印栈的元素
     void Print() {
-        Node* current = top;
-        cout << "Stack (top to bottom): ";
-        while (current != nullptr) {
-            cout << current->data << " ";
+        Node * current = top;
+        cout<<"stack (top to bottom): ";
+        while(current != nullptr){
+            cout<<current->data<<" ";
             current = current->next;
         }
-        cout << endl;
+        cout<<endl;
     }
 
     // 销毁栈
@@ -82,7 +93,8 @@ int main() {
     stack.Push(1);
     stack.Push(2);
     stack.Push(3);
-
+    stack.Push(4);
+    
     stack.Print();
 
     cout << "Top element: " << stack.Top() << endl;
