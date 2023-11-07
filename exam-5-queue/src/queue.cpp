@@ -31,33 +31,33 @@ public:
     
     // 出队，并记录e
     void dequeue(int* e) {
-        if (!isEmpty()) {
-            Node* temp = front;
+        if (!isEmpty()){
             *e = front->data;
+            Node * tmp = front;
             front = front->next;
-            delete temp;
             size--;
+            delete tmp;
         }
     }
 
     // 出队，不记录e
     void dequeue() {
-        if (!isEmpty()) {
-            Node* temp = front;
+        if (!isEmpty()){
+            Node * tmp = front;
             front = front->next;
-            delete temp;
             size--;
+            delete tmp;
         }
     }
 
 
     // 获取队首元素
     bool getFront(int* e) {
-        if (!isEmpty()) {
-            *e = front->data;
-            return true;
+        if (isEmpty()){
+            return false;
         }
-        return false;
+        *e = front->data;
+        return true;
     }
 
     // 检查队列是否为空
@@ -72,19 +72,19 @@ public:
 
     // 清空队列
     void clear() {
-        while (!isEmpty()) {
+        while(!isEmpty()){
             dequeue();
         }
     }
 
     // 显示队列元素
     void display() {
-        Node* current = front;
-        while (current != nullptr) {
-            cout << current->data << " ";
+        Node *current = front;
+        while(current!=nullptr){
+            cout<<current->data<<" ";
             current = current->next;
         }
-        cout << endl;
+        cout<<endl;
     }
 
     // 销毁队列
@@ -92,6 +92,7 @@ public:
         clear();
     }
 };
+
 //输入元素
 void inputQueue(Queue &q){
     cout<<"input elem:"<<endl;
@@ -102,6 +103,7 @@ void inputQueue(Queue &q){
         q.enqueue(temp);
     }
 }
+
 int main() {
     Queue queue;
 
